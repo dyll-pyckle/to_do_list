@@ -34,9 +34,10 @@ def prettyprint(item_list):
     print(f"{HEADERS[0]:<20} | {HEADERS[1]:<12} | {HEADERS[2]:<8}")
     print("-" * 45)
     item, date, priority = item_list
+
     print(f"{i2:2d}. {item:<20} | {date:<12} | {priority:<8}")
     print()
-    i2 =+ 1
+    i2 += 1
 
 while True:
     question = input("""
@@ -93,28 +94,18 @@ while True:
             print("List is empty")
 
     elif question == "4":
-        question4 = input("What priority do you want to view?> ").strip().lower()
-        if question4 == "high":
+            priority = input("View which priority?> ").strip().lower()
             for row in to_do_list:
-                if "high" in row:
-                    prettyprint(row)
-        elif question4 == "medium":
-            for row in to_do_list:
-                if "medium" in row:
-                    prettyprint(row)
-        elif question4 == "low":
-            for row in to_do_list:
-                if "low" in row:
+                if row[2] == priority:
                     prettyprint(row)
 
     elif question == "5":
         print_list()
         changing_name = input("Which item do you want to change?> ").strip().lower()
         for row in to_do_list:
-            if changing_name in row:
+            if changing_name == row[0]:
                 change_to = input(f"What do you want to change '{changing_name} to?> ").strip().lower()
-                index = row.index(changing_name)
-                row[index] = change_to
+                row[0] = change_to
                 print(f"'{changing_name}' has been changed to '{change_to}'.")
 
     elif question == "6":
